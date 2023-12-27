@@ -2,7 +2,8 @@
 using LeetCodeProblems;
 
 int[] ar= { 2,6,5,8,11};
-Console.WriteLine(Strings.RomanToInt("MCMXCIV",Strings.Approach.Better));
+string[] str = { "ab", "a" };
+Console.WriteLine(Strings.LongestCommonPrefix(str, Strings.Approach.Brute));
 Console.ReadLine();
 
 

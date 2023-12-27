@@ -63,7 +63,7 @@ namespace LeetCodeProblems
         }
         #endregion
 
-        # region 1 Two Sum
+        # region 1 Two Sum - Easy
         public static int[] TwoSum(int[] nums, int target,Approach approach)
         {
             int[] result = new int[2];
@@ -133,5 +133,74 @@ namespace LeetCodeProblems
             return result;
         }
         #endregion
+
+        #region 26. Remove Duplicates from Sorted Array - Easy
+        public static int RemoveDuplicates(int[] nums,Approach approach)
+        {
+            int result = 0;
+            switch (approach)
+            {
+                
+                case Approach.Brute:
+                    //TC - NlogN+N
+                    HashSet<int> l1 = new HashSet<int>();
+                    foreach (int num in nums)
+                    {
+                        l1.Add(num);
+                    }
+                    int i = 0;
+                    foreach (int val in l1)
+                    {
+                        nums[i] = val;
+                        i++;
+
+                    }
+                    result= l1.Count;
+                    break;
+
+                case Approach.Better:
+                    //does not exist
+                    break;
+
+                case Approach.Optimal:
+                    //TC - N
+                    //two pointers approach
+                    int a = 0; 
+                    for(int j = 1; j < nums.Length; j++)
+                    {
+                        if(nums[a] != nums[j])
+                        {
+                            nums[a+1] = nums[j];
+                            a++;
+                        }
+                    }
+                    result = a + 1;
+                    break;
+
+                default: break;
+            }
+        
+            return result;
+        }
+
+        #endregion
+
+
+        /*//skeleton
+          switch(approach)
+            {
+                case Approach.Brute:
+                    break;
+
+                case Approach.Better:
+                    break;
+
+                case Approach.Optimal:
+                    break;
+
+                default: break;
+                
+            } 
+         */
     }
 }

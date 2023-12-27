@@ -120,7 +120,7 @@ namespace LeetCodeProblems
 
         #endregion
 
-        #region 13 RomanToInt
+        #region 13 RomanToInt - Easy
         #region ProblemStatement
         /*Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
 
@@ -226,6 +226,44 @@ namespace LeetCodeProblems
             }
             return total;
 
+        }
+        #endregion
+
+        #region 14 Longest Common Prefix - Easy
+        public static string LongestCommonPrefix(string[] strs,Approach approach)
+        {
+            string result = "";
+            switch (approach)
+            {
+                case Approach.Brute:
+                    string checkStr = strs[0];
+
+                    for (int i = 0; i < checkStr.Length; i++)
+                    {
+                        for (int j = 1; j < strs.Length; j++)
+                        {
+                            if (i>=strs[j].Length||checkStr[i] != strs[j][i])
+                            {
+                                return result;
+                            }
+
+                            
+                        }
+                        result += checkStr[i];
+                    }
+                    
+                    break;
+
+                case Approach.Better:
+                    break;
+
+                case Approach.Optimal:
+                    break;
+
+                default: break;
+
+            }
+            return result;
         }
         #endregion
 
