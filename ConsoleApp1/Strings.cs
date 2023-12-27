@@ -173,7 +173,7 @@ namespace LeetCodeProblems
             switch (approach)
             {
                 case Approach.Brute:
-
+                    
                     IDictionary<char, int> romanValues = new Dictionary<char, int>()
                     {
                         {'I',1},
@@ -184,7 +184,6 @@ namespace LeetCodeProblems
                         {'D',500},
                         {'M',1000}
                     };
-
                     
                     char[] chars = s.ToCharArray();
                     for(int i = 0; i < s.Length-1; i++)
@@ -195,6 +194,28 @@ namespace LeetCodeProblems
                     break;
 
                 case Approach.Better:
+
+                    IDictionary<char, int> newRomanValues = new Dictionary<char, int>()
+                    {
+                        {'I',1},
+                        {'V',5},
+                        {'X',10},
+                        {'L',50},
+                        {'C',100},
+                        {'D',500},
+                        {'M',1000}
+                    };
+                    s=s.Replace("IV", "IIII");
+                    s=s.Replace("IX", "VIIII");
+                    s=s.Replace("XL", "XXXX");
+                    s=s.Replace("XC", "LXXXX");
+                    s=s.Replace("CD", "CCCC");
+                    s=s.Replace("CM", "DCCCC");
+                    char[] newChars = s.ToCharArray();
+                    for (int i = 0;i<s.Length;i++)
+                    {
+                        total += newRomanValues[newChars[i]];
+                    }
                     break;
 
                 case Approach.Optimal:
