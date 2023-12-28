@@ -185,11 +185,20 @@ namespace LeetCodeProblems
 
         #endregion
 
-
-        /*//skeleton
-          switch(approach)
+        #region 35. Search Insert Position - Easy
+        public static int SearchInsert(int[] nums, int target,Approach approach)
+        {
+            int result = 0;
+            switch (approach)
             {
                 case Approach.Brute:
+                    for (int i = 0; i < nums.Length; i++)
+                    {
+
+                        if (nums[i] == target || nums[i] > target) { result = i; break; }
+                        if (nums[i] < target && i == nums.Length - 1) { result = i + 1; break; }
+                    }
+
                     break;
 
                 case Approach.Better:
@@ -199,8 +208,98 @@ namespace LeetCodeProblems
                     break;
 
                 default: break;
-                
-            } 
-         */
-    }
+
+            }
+            return result;
+        }
+        #endregion
+
+        #region 66. Plus One - Easy
+        public static int[] PlusOne(int[] digits,Approach approach)
+        {
+            
+            switch (approach)
+            {
+                case Approach.Brute:
+                    //wont work for very large value
+                    long originalNumber=0;
+                    for (int i = digits.Length - 1; i >= 0; i--)
+                    {
+                        originalNumber += digits[Math.Abs(i - (digits.Length - 1))] * (long)Math.Pow(10, i);
+                    }
+                    originalNumber=originalNumber + 1;
+                    long resultArrayLength=originalNumber.ToString().Length;
+                    long[] resultArr = new long[resultArrayLength];
+                    int dig;
+                    while (originalNumber>0)
+                    {
+                        dig=(int)(originalNumber % 10);
+                        resultArr[resultArrayLength-1] =dig;
+                        originalNumber = originalNumber / 10;
+                        resultArrayLength--;
+                    }
+                    long y=resultArr.Length;
+                    break;
+
+                case Approach.Better:
+                    int x = digits.Length - 1;
+                    bool takeNewResult = false;
+                    int[] newResult = new int[digits.Length + 1];
+                    do
+                    {
+                        if (digits[x] != 9)
+                        {
+                            digits[x] = digits[x] + 1;
+                            break;
+                        }
+                        else if (digits[x] == 9 && x != 0)
+                        {
+                            digits[x] = 0;
+                            x--;
+                        }
+                        else if (digits[x] == 9 && x == 0)
+                        {
+                            digits[x] = 0;
+                            digits.CopyTo(newResult, 1);
+                            newResult[0] = 1;
+                            takeNewResult = true;
+                            break;
+
+                        }
+                    }
+                    while (x>=0);
+                    if (takeNewResult) return newResult;
+                    return digits;
+                    break;
+
+                case Approach.Optimal:
+                    break;
+
+                default: break;
+
+            }
+            int[] resultArr1 = new int[3];
+            return resultArr1;
+        }
+        #endregion
+
+
+
+            /*//skeleton
+              switch(approach)
+                {
+                    case Approach.Brute:
+                        break;
+
+                    case Approach.Better:
+                        break;
+
+                    case Approach.Optimal:
+                        break;
+
+                    default: break;
+
+                } 
+             */
+        }
 }

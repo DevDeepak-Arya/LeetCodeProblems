@@ -267,23 +267,40 @@ namespace LeetCodeProblems
         }
         #endregion
 
+        #region 28. Find the Index of the First Occurrence in a String - Easy
+        public static int StrStr(string haystack, string needle)
+        {
+            int result = haystack.IndexOf(needle);
+            return result;
+        }
+        #endregion
+
+        #region 58. Length of Last Word - Easy
+        public static int LengthOfLastWord(string s)
+        {
+            s=s.Trim();
+            string[] words = s.Split(' ');
+            int result = words[words.Length - 1].Length;
+            return result;
+        }
+        #endregion
 
 
-        /*//skeleton
-          switch(approach)
-            {
-                case Approach.Brute:
-                    break;
+            /*//skeleton
+              switch(approach)
+                {
+                    case Approach.Brute:
+                        break;
 
-                case Approach.Better:
-                    break;
+                    case Approach.Better:
+                        break;
 
-                case Approach.Optimal:
-                    break;
+                    case Approach.Optimal:
+                        break;
 
-                default: break;
-                
-            } 
-         */
-    }
+                    default: break;
+
+                } 
+             */
+        }
 }
