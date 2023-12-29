@@ -1,9 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using LeetCodeProblems;
 
-int[] ar= { 9, 9 };
+int[] ar= { 1, 2, 3, 4, 5, 6, 7 };
 string[] str = { "ab", "a" };
-Console.WriteLine(Strings.LengthOfLastWord("   fly me   to   the moon  "));
+Arrays.Rotate(ar, 3);
+Console.WriteLine();
 Console.ReadLine();
 
 

@@ -283,23 +283,68 @@ namespace LeetCodeProblems
         }
         #endregion
 
-
-
-            /*//skeleton
-              switch(approach)
+        #region 1752. Check if Array Is Sorted and Rotated - Easy
+        public static bool Check(int[] nums)
+        {
+            int count = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (i != nums.Length - 1 && nums[i] > nums[i + 1])
                 {
-                    case Approach.Brute:
-                        break;
+                    count++;
+                }
+                else if (i == nums.Length - 1 && nums[nums.Length - 1] > nums[0]) count++;
 
-                    case Approach.Better:
-                        break;
-
-                    case Approach.Optimal:
-                        break;
-
-                    default: break;
-
-                } 
-             */
+                if (count > 1) return false;
+            }
+            return true;
         }
+        #endregion
+
+        #region 189. Rotate Array - Easy
+        public static void Rotate(int[] nums, int k)
+        {
+            k = k % nums.Length;
+            if (k < 0) k = k + nums.Length;
+            if (k != 0)
+            {
+                reverse(nums, 0, nums.Length - 1 - k);
+                reverse(nums, nums.Length - k, nums.Length - 1);
+                reverse(nums, 0, nums.Length - 1);
+            }
+        }
+        public static void reverse(int[] nums, int start, int end)
+        {
+            int li = start;
+            int ri = end;
+            int temp;
+            while (li < ri)
+            {
+                temp = nums[li];
+                nums[li] = nums[ri];
+                nums[ri] = temp;
+                li++;
+                ri--;
+            }
+        }
+        #endregion
+
+
+        /*//skeleton
+          switch(approach)
+            {
+                case Approach.Brute:
+                    break;
+
+                case Approach.Better:
+                    break;
+
+                case Approach.Optimal:
+                    break;
+
+                default: break;
+
+            } 
+         */
+    }
 }
