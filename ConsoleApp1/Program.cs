@@ -1,10 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using LeetCodeProblems;
 
-int[] ar= { 1, 2, 3, 4, 5, 6, 7 };
+int[] ar= { 3, 0, 1 };
 string[] str = { "ab", "a" };
-Arrays.Rotate(ar, 3);
-Console.WriteLine();
+
+Console.WriteLine(Arrays.MissingNumber(ar,Arrays.Approach.Optimal));
 Console.ReadLine();
 
 

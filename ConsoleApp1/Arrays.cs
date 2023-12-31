@@ -329,6 +329,129 @@ namespace LeetCodeProblems
         }
         #endregion
 
+        #region 283. Move Zeroes - Easy
+        public static void MoveZeroes(int[] nums,Approach approach)
+        {
+            switch (approach)
+            {
+                case Approach.Brute:
+                    //TC - O(2N)
+                    //SC - O(N)
+                    List<int> tempList = new List<int>();
+
+                    for (int i = 0; i < nums.Length; i++)
+                    {
+                        if (nums[i] != 0)
+                        {
+                            tempList.Add(nums[i]);
+                        }
+                    }
+
+                    for (int i = 0; i < tempList.Count; i++)
+                    {
+                        nums[i] = tempList[i];
+                    }
+                    for (int i = tempList.Count; i < nums.Length; i++)
+                    {
+                        nums[i] = 0;
+                    }
+                    break;
+
+                case Approach.Better:
+                   
+                    break;
+
+                case Approach.Optimal:
+                    int j = -1;
+                    for (int i = 0; i < nums.Length; i++)
+                    {
+                        if (nums[i] == 0)
+                        {
+                            j = i;
+                           break;
+                        }
+                    }
+                    if (j > 0)
+                    {
+                        for (int i = j + 1; i < nums.Length; i++)
+                        {
+                            if (nums[i] != 0)
+                            {
+                                int temp = nums[i];
+                                nums[i] = nums[j];
+                                nums[j] = temp;
+                                j++;
+                            }
+                        }
+
+                    }
+                    break;
+
+                default: break;
+
+            }
+
+
+        }
+        #endregion
+
+        #region 26. Missing Number - Easy
+        public static int MissingNumber(int[] nums,Approach approach)
+        {
+            switch (approach)
+            {
+                case Approach.Brute:
+                    for (int i = 1; i <= nums.Length; i++)
+                    {
+                        bool check = false;
+                        for (int j = 0; j < nums.Length; j++)
+                        {
+                            if (i == nums[i])
+                            {
+                                check = true;
+                                break;
+                            }
+                        }
+                        if (!check)
+                        {
+                            return i;
+                        }
+                    }
+                    return 0;
+                    break;
+
+                case Approach.Better:
+                    Dictionary<int,int> dict = new Dictionary<int,int>();
+                    for(int i = 1; i <= nums.Length; i++)
+                    {
+                        dict.Add(i, 0);
+                    }
+                    for(int i = 0; i < nums.Length; i++)
+                    {
+                        dict[nums[i]] = 1;
+                    }
+                    if(!dict.ContainsValue(0)) return 0;
+                    return dict.FirstOrDefault(x => x.Value == 0).Key;
+                    break;
+
+                case Approach.Optimal:
+                    int sum = (nums.Length * (nums.Length + 1)) * 1/2;
+
+                    int actSum = 0;
+                    for(int i = 0; i < nums.Length; i++)
+                    {
+                        actSum += nums[i];
+                    }
+                     return sum - actSum;
+                    break;
+
+                default:  break;
+            }
+            return 0;
+
+
+        }
+        #endregion
 
         /*//skeleton
           switch(approach)
