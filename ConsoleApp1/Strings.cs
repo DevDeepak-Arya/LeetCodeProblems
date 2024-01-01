@@ -285,22 +285,50 @@ namespace LeetCodeProblems
         }
         #endregion
 
-
-           /*//skeleton
-              switch(approach)
-                {
-                    case Approach.Brute:
-                        break;
-
-                    case Approach.Better:
-                        break;
-
-                    case Approach.Optimal:
-                        break;
-
-                    default: break;
-
-                } 
-             */
+        #region 1021. Remove Outermost Parentheses
+        public static string RemoveOuterParentheses(string s)
+        {
+            s = s.Trim();
+            string[] temp = s.Split(' ');
+            for (int i = 0; i < temp.Length; i++) temp[i] = temp[i].Trim();
+            Array.Reverse(temp);
+            string result = String.Join(' ', temp);
+            return result;
         }
+        #endregion
+
+        #region 151. Reverse Words in a String
+        public static string ReverseWords(string s)
+        {
+            s = s.Trim();
+            string[] temp = s.Split(' ');
+            for (int i = 0; i < temp.Length; i++) 
+            {
+                temp[i] = temp[i].Trim();
+            }
+            temp = temp.Where(val => val != "").ToArray();
+            Array.Reverse(temp);
+            string result = String.Join(' ', temp);
+            return result;
+        }
+        #endregion
+
+
+        /*//skeleton
+           switch(approach)
+             {
+                 case Approach.Brute:
+                     break;
+
+                 case Approach.Better:
+                     break;
+
+                 case Approach.Optimal:
+                     break;
+
+                 default: break;
+
+             } 
+          */
+    }
 }

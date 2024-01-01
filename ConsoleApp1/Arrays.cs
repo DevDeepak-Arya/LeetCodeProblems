@@ -453,6 +453,49 @@ namespace LeetCodeProblems
         }
         #endregion
 
+        #region 485. Max Consecutive Ones
+        public static int FindMaxConsecutiveOnes(int[] nums)
+        {
+            int max = 0;
+            int temp = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == 1)
+                {
+                    temp++;
+                }
+                if (nums[i] == 0 || i == nums.Length - 1)
+                {
+                    if (temp > max) max = temp;
+                    temp = 0;
+                }
+            }
+            return max;
+        }
+        #endregion
+
+        #region 136. Single Number - Easy
+        public static int SingleNumber(int[] nums)
+        {
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+
+            for(int i = 0; i < nums.Length; i++)
+            {
+                if (!dict.ContainsKey(nums[i]))
+                {
+                    dict.Add(nums[i], 1);
+                }
+                else
+                {
+                   
+                    dict[nums[i]]=++dict[nums[i]];
+                }
+            }
+            return dict.FirstOrDefault(x=>x.Value==1).Key;
+        }
+        #endregion
+
+        
         /*//skeleton
           switch(approach)
             {
