@@ -495,22 +495,89 @@ namespace LeetCodeProblems
         }
         #endregion
 
-        
-        /*//skeleton
-          switch(approach)
+        #region 75. Sort Colors
+        public static void SortColors(int[] nums,Approach approach)
+        {
+            switch (approach)
             {
                 case Approach.Brute:
+                    //TC - nlogn
+                    //SC - N
+                    //Merge Sort
                     break;
 
                 case Approach.Better:
+                    //TC-2n
+                    //SC-1
+                    Dictionary<int, int> freq = new Dictionary<int, int>();
+                    freq.Add(0, 0);
+                    freq.Add(1, 0);
+                    freq.Add(2, 0);
+                    for (int i = 0; i < nums.Length; i++)
+                    {
+                        freq[nums[i]]++;
+                    }
+
+                    for (int i = 0; i < freq[0]; i++) { nums[i] = 0; }
+                    for (int i = freq[0]; i < freq[1] + freq[0]; i++) { nums[i] = 1; }
+                    for (int i = freq[1] + freq[0]; i < nums.Length; i++) { nums[i] = 2; }
                     break;
 
                 case Approach.Optimal:
+                    //Dutch National flag algorithm
+                    //0 to low-1 all 0's
+                    //low to mid-1 all 1's
+                    //mid to high unsorted
+                    //high+1 to n-1 all 2's
+                    int low = 0;
+                    int mid = 0;
+                    int high = nums.Length - 1;
+
+                    while (mid <= high)
+                    {
+                        if (nums[mid] == 0)
+                        {
+                            int temp = nums[low];
+                            nums[low] = nums[mid];
+                            nums[mid] = temp;
+                            low++;
+                            mid++;
+                        }
+                        else if (nums[mid] == 1)
+                        {
+                            mid++;
+                        }
+                        else if (nums[mid] == 2)
+                        {
+                            int temp = nums[high];
+                            nums[high] = nums[mid];
+                            nums[mid] = temp;
+                            high--;
+                        }
+                    }
                     break;
 
                 default: break;
 
-            } 
-         */
-    }
+            }
+        }
+        #endregion
+
+            /*//skeleton
+              switch(approach)
+                {
+                    case Approach.Brute:
+                        break;
+
+                    case Approach.Better:
+                        break;
+
+                    case Approach.Optimal:
+                        break;
+
+                    default: break;
+
+                } 
+             */
+        }
 }

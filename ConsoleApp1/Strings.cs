@@ -313,6 +313,14 @@ namespace LeetCodeProblems
         }
         #endregion
 
+        #region 1903. Largest Odd Number in String
+        //public static string LargestOddNumber(string num)
+        //{
+           
+
+        //}
+        #endregion
+
 
         /*//skeleton
            switch(approach)
