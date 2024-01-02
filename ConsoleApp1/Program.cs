@@ -4,9 +4,9 @@ using LeetCodeProblems;
 int[] ar= {2,2,1 };
 string[] str = { "ab", "a" };
 int[] g={10, 9, 8, 7};
-int[] s = { 5, 6, 7, 8 };
+int[] s = { 1, 3, 4, 1, 2, 3, 1 };
 
-Console.WriteLine(Strings.ReverseWords("a good   example"));
+Console.WriteLine(JanuaryDailyChallenges.FindMatrix(s));
 Console.ReadLine();
 
 

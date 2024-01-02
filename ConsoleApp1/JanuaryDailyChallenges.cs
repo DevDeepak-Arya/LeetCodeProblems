@@ -42,5 +42,30 @@ namespace LeetCodeProblems
         }
 
         #endregion
+        #region 2610. Convert an Array Into a 2D Array With Conditions
+        public static IList<IList<int>> FindMatrix(int[] nums)
+        {
+            Dictionary<int, int> freq = new Dictionary<int, int>();
+
+            IList<IList<int>> result = new List<IList<int>>();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (!freq.ContainsKey(nums[i]))
+                {
+                    freq.Add(nums[i], 0);
+                }
+                freq[nums[i]]++;
+                if (result.Count < freq[nums[i]])
+                {
+                    result.Add(new List<int>());
+                }
+                result[freq[nums[i]] - 1].Add(nums[i]);
+
+            }
+            return result;
+
+        }
+        #endregion
     }
 }
