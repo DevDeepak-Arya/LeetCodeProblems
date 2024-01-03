@@ -42,6 +42,7 @@ namespace LeetCodeProblems
         }
 
         #endregion
+
         #region 2610. Convert an Array Into a 2D Array With Conditions
         public static IList<IList<int>> FindMatrix(int[] nums)
         {
@@ -65,6 +66,32 @@ namespace LeetCodeProblems
             }
             return result;
 
+        }
+        #endregion
+
+        #region 2125. Number of Laser Beams in a Bank
+        public static int NumberOfBeams(string[] bank)
+        {
+            int poc = 0;
+            int ans = 0;
+            foreach (string s in bank)
+            {
+                int coc = 0;
+                for (int i = 0; i < s.Length; i++)
+                {
+                    if (s[i] == '1')
+                    {
+                        coc++;
+                    }
+                }
+                if (coc > 0)
+                {
+
+                    ans += coc * poc;
+                    poc = coc;
+                }
+            }
+            return ans;
         }
         #endregion
     }
