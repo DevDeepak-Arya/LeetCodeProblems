@@ -314,11 +314,19 @@ namespace LeetCodeProblems
         #endregion
 
         #region 1903. Largest Odd Number in String
-        //public static string LargestOddNumber(string num)
-        //{
-           
+        public static string LargestOddNumber(string num)
+        {
+            for (int i = num.Length - 1; i >= 0; i--)
+            {
+                int charValue = Int32.Parse(num[i].ToString());
+                if (charValue % 2 != 0)
+                {
+                    return num.Substring(0, i + 1);
+                }
 
-        //}
+            }
+            return "";
+        }
         #endregion
 
 

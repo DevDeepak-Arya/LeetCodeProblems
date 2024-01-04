@@ -94,5 +94,35 @@ namespace LeetCodeProblems
             return ans;
         }
         #endregion
+
+        #region 2870. Minimum Number of Operations to Make Array Empty
+        public static int MinOperations(int[] nums)
+        {
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (dict.ContainsKey(nums[i]))
+                {
+                    dict[nums[i]]++;
+                }
+                else
+                {
+                    dict.Add(nums[i], 1);
+                }
+            }
+            double result = 0;
+
+            foreach (var el in dict)
+            {
+                if (el.Value == 1)
+                {
+                    return -1;
+                }
+                result += Math.Ceiling((double)el.Value / 3);
+
+            }
+            return (int)result;
+        }
+        #endregion
     }
 }

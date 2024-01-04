@@ -563,21 +563,156 @@ namespace LeetCodeProblems
         }
         #endregion
 
-            /*//skeleton
-              switch(approach)
-                {
-                    case Approach.Brute:
-                        break;
+        #region 53. Maximum Subarray
+        public static int MaxSubArray(int[] nums,Approach approach)
+        {
+            switch (approach)
+            {
+                case Approach.Brute:
+                    //TC n3
+                    int currentSum = 0;
+                    int maxSum = Int32.MinValue;
 
-                    case Approach.Better:
-                        break;
+                    for (int i = 0; i < nums.Length; i++)
+                    {
+                        for (int j = i; j < nums.Length; j++)
+                        {
+                            for (int k = i; k <= j; k++)
+                            {
 
-                    case Approach.Optimal:
-                        break;
+                                currentSum += nums[k];
 
-                    default: break;
+                            }
+                            if (currentSum > maxSum) maxSum = currentSum;
+                            currentSum = 0;
+                        }
+                    }
+                    return maxSum;
+                    break;
 
-                } 
-             */
+                case Approach.Better:
+                    int currentSum2 = 0;
+                    int maxSum1 = Int32.MinValue;
+
+                    for (int i = 0; i < nums.Length; i++)
+                    {
+                        currentSum2 = 0;
+                        for (int j = i; j < nums.Length; j++)
+                        {
+                            currentSum2 += nums[j];
+                            if (currentSum2 > maxSum1) maxSum1 = currentSum2;
+                        }
+
+
+                    }
+                    return maxSum1;
+                    break;
+
+                case Approach.Optimal:
+                    //TC - N
+                    int maxValue = Int32.MinValue;
+                    int currentSum1 = 0;
+
+                    for (int i = 0; i < nums.Length; i++)
+                    {
+                        currentSum1 += nums[i];
+
+                        if (currentSum1 > maxValue)
+                        {
+                            maxValue = currentSum1;
+                        }
+
+
+                        if (currentSum1 < 0)
+                        {
+                            currentSum1 = 0;
+                        }
+                    }
+                    return maxValue;
+                    break;
+
+                default: break;
+
+            }
+            return 0;
+
+
         }
+        #endregion
+
+        #region 121. Best Time to Buy and Sell Stock
+        public static int MaxProfit(int[] prices,Approach approach)
+        {
+            switch (approach)
+            {
+                case Approach.Brute:
+                    int maxProfit = 0;
+                    int currentProfit = 0;
+
+
+                    for (int i = 0; i < prices.Length; i++)
+                    {
+
+                        int buyPrice = prices[i];
+                        for (int j = i + 1; j < prices.Length; j++)
+                        {
+                            //7, 1, 5, 3, 6, 4
+                            int sellPrice = prices[j];
+                            currentProfit = sellPrice - buyPrice;
+                            if (currentProfit > 0 && currentProfit > maxProfit)
+                            {
+                                maxProfit = currentProfit;
+                            }
+                        }
+
+                    }
+                    if (maxProfit < 0)
+                    {
+                        return 0;
+                    }
+                    return maxProfit;
+                    break;
+
+                case Approach.Better:
+                    break;
+
+                case Approach.Optimal:
+                    int mini = prices[0];
+                    int mxProfit = 0;
+
+                    for (int i = 0; i < prices.Length; i++)
+                    {
+                        int cost = prices[i] - mini;
+
+                        maxProfit = Math.Max(mxProfit, cost);
+                        mini = Math.Min(mini, prices[i]);
+                    }
+                    return mxProfit;
+                    break;
+
+                default: break;
+            }
+            return 0;
+
+
+        }
+        #endregion
+
+        /*//skeleton
+          switch(approach)
+            {
+                case Approach.Brute:
+                    break;
+
+                case Approach.Better:
+                    break;
+
+                case Approach.Optimal:
+                    break;
+
+                default: break;
+
+            } 
+         */
+    }
 }
