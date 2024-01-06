@@ -3,9 +3,11 @@ using LeetCodeProblems;
 
 int[] ar= {2,2,1 };
 string[] str = { "ab", "a" };
-int[] g={10, 9, 8, 7};
-int[] s = { 7,1,5,3,6,4 };
-Console.WriteLine(Arrays.MaxProfit(s));
+int[] g={ 1, 2, 3, 3 };
+int[] s = { 3, 4, 5, 6 };
+int[] t = { 50, 10, 40, 70 };
+
+Console.WriteLine(JanuaryDailyChallenges.JobScheduling(g,s,t));
 Console.ReadLine();
 
 

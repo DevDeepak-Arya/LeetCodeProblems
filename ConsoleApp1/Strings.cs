@@ -329,6 +329,68 @@ namespace LeetCodeProblems
         }
         #endregion
 
+        #region 205. Isomorphic Strings
+        public static bool IsIsomorphic(string s, string t)
+        {
+            if (s.Length != t.Length)
+            {
+                return false;
+            }
+            Dictionary<char, char> dic1 = new Dictionary<char, char>();
+            Dictionary<char, bool> dic2 = new Dictionary<char, bool>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (dic1.ContainsKey(s[i]))
+                {
+                    if (dic1[s[i]] != t[i]) { return false; }
+                }
+                else
+                {
+                    if (dic2.ContainsKey(t[i]) && dic2[t[i]] == true) { return false; }
+                    else
+                    {
+                        dic1.Add(s[i], t[i]);
+                        dic2.Add(t[i], true);
+                    }
+                }
+            }
+            return true;
+        }
+        #endregion
+
+        #region 796. Rotate String
+        public static bool RotateString(string s, string goal)
+        {
+            if (s.Length != goal.Length) return false;
+
+            string sFinal = s + s;
+
+            if (sFinal.Contains(goal)) return true;
+            return false;
+        }
+        #endregion
+
+        #region 242. Valid Anagram
+        public static bool IsAnagram(string s, string t)
+        {
+            char[] c1 = s.ToCharArray();
+            char[] c2 = t.ToCharArray();
+
+            Array.Sort(c1);
+            Array.Sort(c2);
+            string s1 = new string(c1);
+            string s2 = new string(c2);
+
+            if (s1 == s2)
+            {
+                return true;
+            }
+            return false;
+
+
+        }
+        #endregion
 
         /*//skeleton
            switch(approach)

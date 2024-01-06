@@ -124,5 +124,103 @@ namespace LeetCodeProblems
             return (int)result;
         }
         #endregion
+
+        #region 300. Longest Increasing Subsequence
+        static int[,] t = new int[2501, 2501];
+
+        public static int maxOfSubarray(int i, int p, int[] nums)
+        {
+            if (i >= nums.Length)
+            {
+                return 0;
+            }
+            if (p != -1 && JanuaryDailyChallenges.t[i,p] != -1)
+            {
+                return JanuaryDailyChallenges.t[i,p];
+            }
+            int take = 0;
+            //take
+            if (p == -1 || nums[i] > nums[p])
+            {
+                take = 1 + maxOfSubarray(i + 1, i, nums);
+            }
+            int skip = 0;
+            //skip
+            skip = maxOfSubarray(i + 1, p, nums);
+
+            if (p != -1) { JanuaryDailyChallenges.t[i,p] = Math.Max(take, skip); }
+            return Math.Max(take, skip);
+        }
+        public static int LengthOfLIS(int[] nums)
+        {
+            
+            for (int i = 0; i < 2501; i++)
+            {
+                for (int j = 0; j < 2501; j++)
+                {
+                    t[i, j] = -1;
+                }
+            }
+            return maxOfSubarray(0, -1, nums);
+        }
+        #endregion
+
+        #region 1235. Maximum Profit in Job Scheduling
+         static int n;
+         static int[] memo = new int[50001];
+        static int getNextIndex(List<List<int>> array, int l, int currentJobEnd)
+        {
+            int r = n - 1;
+            int result = n + 1;
+            while (l <= r)
+            {
+                int mid = l + (r - l) / 2;
+
+                if (array[mid][0] >= currentJobEnd)
+                {
+                    result = mid;
+                    r = mid - 1;
+                }
+                else
+                {
+                    l = mid + 1;
+                }
+            }
+            return result;
+        }
+
+        static int Solve(List<List<int>> array, int i)
+        {
+            if (i >= n)
+            {
+                return 0;
+            }
+            if (memo[i] != -1) { return memo[i]; }
+            int next = getNextIndex(array, i + 1, array[i][1]);
+            int taken = array[i][2] + Solve(array, next);
+
+            int notTaken = Solve(array, i + 1);
+
+            return memo[i] = Math.Max(taken, notTaken);
+
+        }
+
+       static public int JobScheduling(int[] startTime, int[] endTime, int[] profit)
+        {
+            n = startTime.Length;
+            List<List<int>> arrayProfit = new List<List<int>>();
+
+            for (int i = 0; i < n; i++)
+            {
+                arrayProfit.Add(new List<int>() { startTime[i], endTime[i], profit[i] });
+            }
+            List<List<int>> array = arrayProfit.OrderBy(sublist => sublist[0]).ToList();
+
+            for (int i = 0; i < memo.Length; i++) { memo[i] = -1; }
+
+            return Solve(array, 0);
+
+        }
+        #endregion
     }
 }
