@@ -5,9 +5,9 @@ int[] ar= {2,2,1 };
 string[] str = { "ab", "a" };
 int[] g={ 1, 2, 3, 3 };
 int[] s = { 3, 4, 5, 6 };
-int[] t = { 50, 10, 40, 70 };
-
-Console.WriteLine(JanuaryDailyChallenges.JobScheduling(g,s,t));
+int[] t = { 3, 1, -2, -5, 2, -4 };
+string st = "book";
+Console.WriteLine(JanuaryDailyChallenges.HalvesAreAlike(st));
 Console.ReadLine();
 
 

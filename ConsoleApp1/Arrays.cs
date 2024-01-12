@@ -698,6 +698,29 @@ namespace LeetCodeProblems
         }
         #endregion
 
+        #region 2149. Rearrange Array Elements by Sign
+        public static int[] RearrangeArray(int[] nums)
+        {
+            int[] num = new int[nums.Length];
+            int p = 0, n = 1;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] > 0)
+                {
+                    num[p] = nums[i];
+                    p += 2;
+                }
+                else
+                {
+                    num[n] = nums[i];
+                    n += 2;
+                }
+            }
+            return num;
+
+        }
+        #endregion
+
         /*//skeleton
           switch(approach)
             {

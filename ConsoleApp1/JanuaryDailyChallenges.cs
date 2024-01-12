@@ -222,5 +222,80 @@ namespace LeetCodeProblems
 
         }
         #endregion
+
+        #region 446. Arithmetic Slices II - Subsequence
+        public static int NumberOfArithmeticSlices(int[] nums)
+        {
+            int ans = 0;
+
+            Dictionary<int, int>[] maps = new Dictionary<int, int>[nums.Length];
+            for (int i = 0; i < nums.Length; i++)
+            {
+                maps[i] = new Dictionary<int, int>();
+            }
+
+            for (int i = 1; i < nums.Length; i++)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    long cd = (long)nums[i] - (long)nums[j];
+                    if (cd <= Int32.MinValue || cd >= Int32.MaxValue)
+                    {
+                        continue;
+                    }
+
+                    int apsEndingOnJ = maps[j].GetValueOrDefault((int)cd);
+                    int apsEndingOnI = maps[i].GetValueOrDefault((int)cd);
+
+                    ans += apsEndingOnJ;
+                    if (maps[i].TryGetValue((int)cd, out int apsEndingOni))
+                    {
+                        maps[i][(int)cd] = apsEndingOnJ + apsEndingOni + 1;
+                    }
+                    else
+                    {
+                        maps[i].Add((int)cd, apsEndingOnJ + apsEndingOnI + 1);
+                    }
+                }
+            }
+
+            return ans;
+
+        }
+        #endregion
+
+        #region 1704. Determine if String Halves Are Alike
+        public static bool HalvesAreAlike(string s)
+        {
+            string a = s.Substring(0, s.Length / 2);
+            string b = s.Substring(s.Length / 2 + 1);
+
+            int count1 = VowelCount(a);
+            int count2 = VowelCount(b);
+
+            if (count1 == count2) { return true; }
+            return false;
+
+
+        }
+
+        static int VowelCount(string input)
+        {
+            int sum = 0;
+            foreach (char c in input)
+            {
+                if (IsVowel(c))
+                {
+                    sum++; // If a vowel is found, increment the value
+                }
+            }
+            return sum;
+        }
+        static bool IsVowel(char character)
+        {
+            char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
+            return Array.IndexOf(vowels, character) != -1;
+        }
+        #endregion
     }
 }
