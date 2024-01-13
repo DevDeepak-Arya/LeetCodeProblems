@@ -268,7 +268,7 @@ namespace LeetCodeProblems
         public static bool HalvesAreAlike(string s)
         {
             string a = s.Substring(0, s.Length / 2);
-            string b = s.Substring(s.Length / 2 + 1);
+            string b = s.Substring(s.Length / 2 );
 
             int count1 = VowelCount(a);
             int count2 = VowelCount(b);
@@ -295,6 +295,68 @@ namespace LeetCodeProblems
         {
             char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
             return Array.IndexOf(vowels, character) != -1;
+        }
+        #endregion
+
+        #region 1347. Minimum Number of Steps to Make Two Strings Anagram
+        public static int MinSteps(string s, string t)
+        {
+            Dictionary<char, int> dic1 = new Dictionary<char, int>();
+            Dictionary<char, int> dic2 = new Dictionary<char, int>();
+            int flipCount = 0;
+            int extraCount = 0;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (dic1.ContainsKey(s[i]))
+                {
+                    dic1[s[i]]++;
+                }
+                else
+                {
+                    dic1.Add(s[i], 1);
+                }
+                if (dic2.ContainsKey(t[i]))
+                {
+                    dic2[t[i]]++;
+                }
+                else
+                {
+                    dic2.Add(t[i], 1);
+                }
+            }
+
+            foreach (var val in dic1)
+            {
+                if (dic2.ContainsKey(val.Key))
+                {
+                    if (dic2[val.Key] == dic1[val.Key]) continue;
+                    else
+                    {
+                        if (dic1[val.Key] - dic2[val.Key] < 0)
+                        {
+                            extraCount = extraCount + (dic2[val.Key] - dic1[val.Key]);
+                        }
+                        else
+                        {
+                            flipCount = flipCount + (dic1[val.Key] - dic2[val.Key]);
+                        }
+                    }
+                }
+                else
+                {
+                    flipCount = flipCount + dic1[val.Key];
+                }
+
+            }
+            if (Math.Abs(flipCount - extraCount) == 0)
+            {
+                return flipCount;
+            }
+
+            return Math.Abs(flipCount - extraCount);
+
+
         }
         #endregion
     }
