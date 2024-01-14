@@ -6,9 +6,9 @@ string[] str = { "ab", "a" };
 int[] g={ 1, 2, 3, 3 };
 int[] s = { 3, 4, 5, 6 };
 int[] t = { 3, 1, -2, -5, 2, -4 };
-string st = "leetcode";
-string tt = "practice";
-Console.WriteLine(JanuaryDailyChallenges.MinSteps(st,tt));
+string st = "abc";
+string tt = "bca";
+Console.WriteLine(JanuaryDailyChallenges.CloseStrings(st,tt));
 Console.ReadLine();
 
 

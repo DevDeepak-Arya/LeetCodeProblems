@@ -359,5 +359,47 @@ namespace LeetCodeProblems
 
         }
         #endregion
+
+        #region 1657. Determine if Two Strings Are Close
+        public static bool CloseStrings(string word1, string word2)
+        {
+            int word1Length = word1.Length;
+            int word2Length = word2.Length;
+            if (word1Length != word2Length) { return false; }
+
+
+            int[] word1FrequencyArray = new int[26];
+            int[] word2FrequencyArray = new int[26];
+
+            // Iterate through each character in the string
+            for (int i = 0; i < word1.Length; i++)
+            {
+                // Check if the character is an English alphabet letter
+                if (word1[i] >= 'a' && word1[i] <= 'z')
+                {
+                    // Increment the frequency of the corresponding character in the array
+                    word1FrequencyArray[word1[i] - 'a']++;
+                }
+
+                if (word2[i] >= 'a' && word2[i] <= 'z')
+                {
+                    // Increment the frequency of the corresponding character in the array
+                    word2FrequencyArray[word2[i] - 'a']++;
+                }
+            }
+
+            for (int i = 0; i < 26; i++)
+            {
+                if (word1FrequencyArray[i] != 0 && word2FrequencyArray[i] != 0) continue;
+                if (word1FrequencyArray[i] == 0 && word2FrequencyArray[i] == 0) continue;
+                return false;
+            }
+            Array.Sort(word1FrequencyArray);
+            Array.Sort(word2FrequencyArray);
+            if (word1FrequencyArray.SequenceEqual(word2FrequencyArray)) return true;
+            return false;
+
+        }
+        #endregion
     }
 }
